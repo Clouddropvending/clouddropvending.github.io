@@ -1845,3 +1845,17 @@ a, button, .btn, .btn-venue{
 .hero-title.floating {
   transform: translateZ(0); /* improve GPU rasterization on mobile */
 }
+/* Creates space so the glow never touches hero or machines */
+.wwd-padding {
+  padding-top: 250px;
+  padding-bottom: 250px;
+  position: relative;
+}
+
+/* Reduce padding on phones */
+@media (max-width: 720px) {
+  .wwd-padding {
+    padding-top: 90px;
+    padding-bottom: 100px;
+  }
+}
