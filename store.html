@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cloud Drop Store</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="store-page">
+
+  <!-- NAV -->
+  <nav class="site-nav" role="navigation">
+    <div class="container nav-inner">
+      <a href="index.html#hero" class="nav-brand">Cloud Drop</a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <div id="nav-menu" class="nav-links">
+        <a href="index.html#about">What we do</a>
+        <a href="index.html#machine">Machines</a>
+        <a href="store.html" class="nav-link-active">Vape Store</a>
+        <a href="index.html#contact" class="btn">Book a call</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Background stars & refund button (reuse from main site) -->
+  <div class="stars" id="stars"></div>
+  <a id="refund-help-btn" class="refund-help-btn" href="refund.html">💬 Refund Help</a>
+
+  <!-- STORE HERO -->
+  <section class="store-hero" data-aos="fade-up">
+    <div class="container store-hero-inner">
+      <div class="store-hero-copy">
+        <p class="store-hero-tag">Cloud Drop Store · Concept</p>
+        <h1>Vape retail that feels like a tech store.</h1>
+        <p class="store-hero-sub">
+          A bright, minimal in-person store concept built around a curated menu — inspired by how people
+          already shop our machines in Vancouver nightlife.
+        </p>
+        <div class="store-hero-meta">
+          <span class="badge-soft">19+ only</span>
+          <span class="badge-soft">Metro Vancouver</span>
+          <span class="badge-soft">In-person retail · concept</span>
+        </div>
+      </div>
+
+      <div class="store-hero-mock">
+        <div class="store-hero-screen">
+          <div class="screen-header">
+            <span class="screen-dot"></span>
+            <span class="screen-dot"></span>
+            <span class="screen-dot"></span>
+          </div>
+          <div class="screen-body">
+            <!-- Placeholder “store” mock – swap with your own image later -->
+            <div class="screen-shelves">
+              <div class="shelf-row"></div>
+              <div class="shelf-row"></div>
+              <div class="shelf-row short"></div>
+            </div>
+            <div class="screen-caption">Cloud Drop Store · Interior concept</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CATALOG LAYOUT -->
+  <section class="store-catalog" data-aos="fade-up" data-aos-delay="80">
+    <div class="container store-layout">
+
+      <!-- LEFT: filters + status (like real store sidebar) -->
+      <aside class="store-sidebar">
+        <div class="store-panel">
+          <h2>Browse concept lineup</h2>
+          <p>How we’re thinking about the shelves inside the store.</p>
+          <div class="store-filters">
+            <button class="filter-chip active">All</button>
+            <button class="filter-chip">Disposables</button>
+            <button class="filter-chip">Flavours</button>
+            <button class="filter-chip">Hardware</button>
+          </div>
+        </div>
+
+        <div class="store-panel">
+          <h3>Launch & service status</h3>
+          <div class="status-row">
+            <span class="status-label">Venue machines</span>
+            <span class="status-pill live">Live</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Cloud Drop Store (retail)</span>
+            <span class="status-pill planned">In design</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Delivery</span>
+            <span class="status-pill review">Under review</span>
+          </div>
+          <p class="store-panel-text">
+            For now, all sales happen via our 19+ venue machines. This page shows how a future store
+            layout could look — not an active ecommerce site.
+          </p>
+        </div>
+
+        <div class="store-panel subtle">
+          <h3>Delivery concept</h3>
+          <p>
+            A tightly controlled 19+ delivery layer is being explored: ID in hand at the door, limited
+            delivery zones, and only where BC regulations clearly allow it.
+          </p>
+        </div>
+      </aside>
+
+      <!-- RIGHT: product grid -->
+      <div class="store-products">
+        <div class="store-lineup-head">
+          <h2>Future in-store lineup</h2>
+          <p>
+            Each tile below represents how we imagine the “shelves” — few SKUs, clear categories, and a
+            focus on what actually moves in real venues.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <!-- Product card 1 -->
+          <article class="product-card">
+            <div class="product-img-frame">
+              <!-- Swap src with a real image later -->
+              <div class="fake-pack">Fog 16</div>
+            </div>
+            <div class="product-main">
+              <div class="product-top-row">
+                <h3>Fog Series 16 Core Line</h3>
+                <span class="product-status in-machines">In machines now</span>
+              </div>
+              <p>
+                Our anchor disposable lineup — already live in partner venues. These form the baseline
+                of the in-store shelves.
+              </p>
+              <ul>
+                <li>Nightlife-tested flavours and strengths</li>
+                <li>Clear, simple flavour labelling</li>
+                <li>Front-and-center placement in-store</li>
+              </ul>
+              <div class="product-meta">
+                <span class="pill-soft">Category: Disposables</span>
+                <span class="pill-soft">Source: venue data</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product card 2 -->
+          <article class="product-card">
+            <div class="product-img-frame">
+              <div class="fake-pack alt">Rotating</div>
+            </div>
+            <div class="product-main">
+              <div class="product-top-row">
+                <h3>Rotating Feature Flavours</h3>
+                <span class="product-status coming-soon">Store lineup (planned)</span>
+              </div>
+              <p>
+                Limited-time flavours chosen using real sales data and feedback from venue partners —
+                not random wall-filler.
+              </p>
+              <ul>
+                <li>Short, seasonal rotations</li>
+                <li>Data-informed additions and removals</li>
+                <li>Clear “new / limited” labeling on shelf</li>
+              </ul>
+              <div class="product-meta">
+                <span class="pill-soft">Category: Flavours</span>
+                <span class="pill-soft">Status: concept</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product card 3 -->
+          <article class="product-card">
+            <div cla
+

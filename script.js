@@ -388,3 +388,63 @@ if (refundBtn) {
   // close on ESC
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
 })();
+/* Store waitlist (Formspree AJAX) */
+(() => {
+  const form   = document.getElementById('store-waitlist');
+  const status = document.getElementById('store-waitlist-status');
+  if (!form || !status) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Joining…';
+    }
+    status.style.color = '';
+    status.textContent = '';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        status.style.color = '#9ee7ff';
+        status.textContent = 'You’re on the list – we’ll email you when we launch.';
+      } else {
+        status.style.color = '#ffb4a8';
+        status.textContent = 'Something went wrong. Please try again.';
+      }
+    } catch {
+      status.style.color = '#ffb4a8';
+      status.textContent = 'Network error. Please try again.';
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = 'Notify me';
+      }
+    }
+  });
+})();
+// Vape console mode switching
+(() => {
+  const buttons = Array.from(document.querySelectorAll('.console-mode-btn'));
+  const panels  = Array.from(document.querySelectorAll('.console-panel'));
+  if (!buttons.length || !panels.length) return;
+
+  const setMode = (mode) => {
+    buttons.forEach(btn =>
+      btn.classList.toggle('active', btn.dataset.mode === mode)
+    );
+    panels.forEach(panel =>
+      panel.classList.toggle('active', panel.dataset.modePanel === mode)
+    );
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => setMode(btn.dataset.mode));
+  });
+})();
