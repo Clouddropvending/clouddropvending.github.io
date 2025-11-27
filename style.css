@@ -1851,6 +1851,12 @@ a, button, .btn, .btn-venue{
   padding-bottom: 250px;
   position: relative;
 }
+.wwd-right-footer {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
 /* Reduce padding on phones */
 @media (max-width: 720px) {
