@@ -1847,7 +1847,7 @@ a, button, .btn, .btn-venue{
 }
 /* Creates space so the glow never touches hero or machines */
 .wwd-padding {
-  padding-top: 250px;
+  padding-top: 150px;
   padding-bottom: 250px;
   position: relative;
 }
