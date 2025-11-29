@@ -579,14 +579,14 @@ p,li{
   position:relative;
   display:grid;
   place-items:center;
-  height:360px;
+  height:385px;
   border-radius:12px;
   background:linear-gradient(160deg, rgba(126,224,247,.12), rgba(126,224,247,.04));
   border:1px dashed rgba(126,224,247,.38);
   overflow:hidden;
 }
 .coming-img{
-  width:320px;
+  width:300px;
   height:auto;
   opacity:.55;
   filter: blur(.2px);
