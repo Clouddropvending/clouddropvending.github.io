@@ -17,7 +17,7 @@
    CONTACT FORM (Formspree AJAX)
    ----------------------------- */
 (() => {
-  const contactForm   = document.getElementById('contact-form');
+  const contactForm = document.getElementById('contact-form');
   const contactStatus = document.getElementById('form-status');
   if (!contactForm || !contactStatus) return;
 
@@ -45,7 +45,7 @@
         try {
           const data = await res.json();
           if (data?.errors?.length) msg = data.errors.map(e => e.message).join(', ');
-        } catch {}
+        } catch { }
         contactStatus.style.color = '#ffb4a8';
         contactStatus.textContent = msg;
       }
@@ -62,22 +62,22 @@
    CONTRACT FORM (Supabase + Canvas signature)
    ------------------------------------------- */
 (() => {
-  const contractForm   = document.getElementById('contract-form');
+  const contractForm = document.getElementById('contract-form');
   const contractStatus = document.getElementById('contract-status');
-  const canvas         = document.getElementById('sigPad');
-  const clearBtn       = document.getElementById('clearSig');
+  const canvas = document.getElementById('sigPad');
+  const clearBtn = document.getElementById('clearSig');
   if (!contractForm || !contractStatus || !canvas) return;
 
   /* ---------- Paper-like extras (date, id, live bindings, print) ---------- */
   // Fill dates and a lightweight "agreement id"
   const today = new Date();
-  const fmt = today.toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' });
+  const fmt = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   const el1 = document.getElementById('contract-date');
   const el2 = document.getElementById('contract-date-2');
   if (el1) el1.textContent = fmt;
   if (el2) el2.textContent = fmt;
   const idEl = document.getElementById('contract-id');
-  if (idEl) idEl.textContent = Math.random().toString(36).slice(2,7).toUpperCase();
+  if (idEl) idEl.textContent = Math.random().toString(36).slice(2, 7).toUpperCase();
 
   // Live-bind inputs (via data-bind="#selector")
   (function wireBindings(form) {
@@ -108,7 +108,7 @@
 
   /* ---------- Supabase setup & signature pad ---------- */
   // TODO: replace with your real project values
-  const SUPABASE_URL  = 'https://YOUR-PROJECT-REF.supabase.co';
+  const SUPABASE_URL = 'https://YOUR-PROJECT-REF.supabase.co';
   const SUPABASE_ANON = 'YOUR-ANON-KEY';
 
   if (typeof supabase === 'undefined') {
@@ -122,12 +122,12 @@
   // Simple signature pad
   const ctx = canvas.getContext('2d');
   function initCanvas() {
-    const dpr  = window.devicePixelRatio || 1;
+    const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
-    const h    = 180;
-    canvas.width  = Math.floor(rect.width * dpr);
+    const h = 180;
+    canvas.width = Math.floor(rect.width * dpr);
     canvas.height = Math.floor(h * dpr);
-    canvas.style.width  = rect.width + 'px';
+    canvas.style.width = rect.width + 'px';
     canvas.style.height = h + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = '#0b0b0d';
@@ -146,21 +146,21 @@
     return { x: c.clientX - r.left, y: c.clientY - r.top };
   };
   const start = (e) => { drawing = true; last = pt(e); e.preventDefault(); };
-  const move  = (e) => {
+  const move = (e) => {
     if (!drawing) return;
     const p = pt(e);
     ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
     last = p; isBlank = false; e.preventDefault();
   };
-  const end   = () => { drawing = false; };
+  const end = () => { drawing = false; };
 
   canvas.addEventListener('mousedown', start);
   canvas.addEventListener('mousemove', move);
   canvas.addEventListener('mouseup', end);
   canvas.addEventListener('mouseleave', end);
-  canvas.addEventListener('touchstart', start, { passive:false });
-  canvas.addEventListener('touchmove',  move,  { passive:false });
-  canvas.addEventListener('touchend',   end);
+  canvas.addEventListener('touchstart', start, { passive: false });
+  canvas.addEventListener('touchmove', move, { passive: false });
+  canvas.addEventListener('touchend', end);
 
   clearBtn?.addEventListener('click', () => { initCanvas(); isBlank = true; });
 
@@ -170,13 +170,13 @@
     contractStatus.style.color = '#cfefff';
     contractStatus.textContent = 'Submitting…';
 
-    const fd      = new FormData(contractForm);
-    const venue   = (fd.get('venue')   || '').toString().trim();
+    const fd = new FormData(contractForm);
+    const venue = (fd.get('venue') || '').toString().trim();
     const manager = (fd.get('manager') || '').toString().trim();
-    const email   = (fd.get('email')   || '').toString().trim();
-    const phone   = (fd.get('phone')   || '').toString().trim();
-    const notes   = (fd.get('notes')   || '').toString().trim();
-    const agree   = !!fd.get('agree');
+    const email = (fd.get('email') || '').toString().trim();
+    const phone = (fd.get('phone') || '').toString().trim();
+    const notes = (fd.get('notes') || '').toString().trim();
+    const agree = !!fd.get('agree');
 
     if (!venue || !manager || !email || !agree) {
       contractStatus.style.color = '#ffb4a8';
@@ -222,12 +222,12 @@
 (() => {
   const ACCESS_PIN = 'Cloud2025'; // <-- set your code
 
-  const gateEl   = document.getElementById('venue-gate');
-  const openBtn  = document.getElementById('open-venue-gate');
+  const gateEl = document.getElementById('venue-gate');
+  const openBtn = document.getElementById('open-venue-gate');
   const cancelBt = document.getElementById('cancel-venue');
   const submitBt = document.getElementById('submit-venue');
-  const inputEl  = document.getElementById('venue-pin');
-  const msgEl    = document.getElementById('venue-msg');
+  const inputEl = document.getElementById('venue-pin');
+  const msgEl = document.getElementById('venue-msg');
   const contract = document.getElementById('contract');
   if (!gateEl || !contract) return;
 
@@ -274,15 +274,15 @@
 (() => {
   const els = [...document.querySelectorAll('.reveal-up')];
   if (!els.length) return;
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if (e.isIntersecting){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
         e.target.classList.add('in');
         io.unobserve(e.target);
       }
     });
-  }, { rootMargin:'-10% 0px -10% 0px', threshold:0.1 });
-  els.forEach(el=>io.observe(el));
+  }, { rootMargin: '-10% 0px -10% 0px', threshold: 0.1 });
+  els.forEach(el => io.observe(el));
 })();
 /* Lightweight reveal fallback (works even if AOS is missing) */
 (() => {
@@ -308,56 +308,56 @@
 if (window.AOS) AOS.init({ once: true, duration: 600 });
 
 // Reveal-on-scroll (matches the CSS .reveal-up / .stagger)
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
       e.target.classList.add('in');
       io.unobserve(e.target);
     }
   });
-},{ threshold:.12 });
+}, { threshold: .12 });
 
-document.querySelectorAll('.reveal-up, .stagger').forEach(el=>io.observe(el));
+document.querySelectorAll('.reveal-up, .stagger').forEach(el => io.observe(el));
 
 // Sticky nav shadow class
 const nav = document.querySelector('.site-nav');
 if (nav) {
   const set = () => nav.classList.toggle('scrolled', window.scrollY > 4);
-  set(); window.addEventListener('scroll', set, {passive:true});
+  set(); window.addEventListener('scroll', set, { passive: true });
 }
 
 // Floating Refund Help button micro-interactions (CSS handles most states)
 const refundBtn = document.getElementById('refund-help-btn');
 if (refundBtn) {
   refundBtn.addEventListener('mousedown', () => refundBtn.style.transform = 'translateY(0) scale(0.98)');
-  refundBtn.addEventListener('mouseup',   () => refundBtn.style.transform = 'translateY(-2px) scale(1.04)');
+  refundBtn.addEventListener('mouseup', () => refundBtn.style.transform = 'translateY(-2px) scale(1.04)');
 }
 
 // OPTIONAL: simple starfield generator (keeps your existing container)
-(function starfield(){
+(function starfield() {
   const root = document.getElementById('stars');
   if (!root) return;
-  const count = Math.min(120, Math.floor(window.innerWidth/12));
-  for (let i=0;i<count;i++){
+  const count = Math.min(120, Math.floor(window.innerWidth / 12));
+  for (let i = 0; i < count; i++) {
     const s = document.createElement('div');
     s.className = 'star';
-    s.style.left = Math.random()*100 + 'vw';
-    s.style.top  = Math.random()*100 + 'vh';
-    s.style.opacity = (0.3 + Math.random()*0.5).toFixed(2);
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = Math.random() * 100 + 'vh';
+    s.style.opacity = (0.3 + Math.random() * 0.5).toFixed(2);
     root.appendChild(s);
   }
   // sporadic shooting stars
-  setInterval(()=>{
+  setInterval(() => {
     const ss = document.createElement('div');
     ss.className = 'shooting-star';
-    ss.style.left = (50 + Math.random()*50) + 'vw';
-    ss.style.top  = (Math.random()*40) + 'vh';
+    ss.style.left = (50 + Math.random() * 50) + 'vw';
+    ss.style.top = (Math.random() * 40) + 'vh';
     root.appendChild(ss);
-    setTimeout(()=> ss.remove(), 1400);
-  }, 2000 + Math.random()*2000);
+    setTimeout(() => ss.remove(), 1400);
+  }, 2000 + Math.random() * 2000);
 })();
 // Show loading state on submit
-(function(){
+(function () {
   const form = document.getElementById('contact-form');
   if (!form) return;
   form.addEventListener('submit', () => {
@@ -370,7 +370,7 @@ if (refundBtn) {
   });
 })();
 // Mobile nav toggle
-(function(){
+(function () {
   const nav = document.querySelector('.site-nav');
   const toggle = document.querySelector('.nav-toggle');
   const menu = document.getElementById('nav-menu');
@@ -390,7 +390,7 @@ if (refundBtn) {
 })();
 /* Store waitlist (Formspree AJAX) */
 (() => {
-  const form   = document.getElementById('store-waitlist');
+  const form = document.getElementById('store-waitlist');
   const status = document.getElementById('store-waitlist-status');
   if (!form || !status) return;
 
@@ -432,7 +432,7 @@ if (refundBtn) {
 // Vape console mode switching
 (() => {
   const buttons = Array.from(document.querySelectorAll('.console-mode-btn'));
-  const panels  = Array.from(document.querySelectorAll('.console-panel'));
+  const panels = Array.from(document.querySelectorAll('.console-panel'));
   if (!buttons.length || !panels.length) return;
 
   const setMode = (mode) => {
@@ -446,5 +446,63 @@ if (refundBtn) {
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => setMode(btn.dataset.mode));
+  });
+})();
+
+
+// ========= THE HUD (REACTIVE LERP) =========
+(function () {
+  const hero = document.querySelector('.hero-container');
+  const hud = document.querySelector('.hero-hud');
+  // Check gate early
+  if (!hero || !hud || !window.matchMedia('(hover: hover)').matches) return;
+
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+  let isRunning = false;
+
+  const lerp = (start, end, factor) => start + (end - start) * factor;
+  const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+  function animate() {
+    currentX = lerp(currentX, targetX, 0.08);
+    currentY = lerp(currentY, targetY, 0.08);
+
+    // Only update DOM if diff is meaningful
+    if (Math.abs(targetX - currentX) > 0.0005 || Math.abs(targetY - currentY) > 0.0005) {
+      hud.style.setProperty('--mag-x', currentX.toFixed(4));
+      hud.style.setProperty('--mag-y', currentY.toFixed(4));
+      requestAnimationFrame(animate);
+    } else {
+      isRunning = false; // Sleep
+    }
+  }
+
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    // Center of the container
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    // Normalize -1 to 1 based on container dimensions
+    const rawX = (e.clientX - centerX) / (rect.width / 2);
+    const rawY = (e.clientY - centerY) / (rect.height / 2);
+
+    targetX = clamp(rawX, -1, 1);
+    targetY = clamp(rawY, -1, 1);
+
+    if (!isRunning) {
+      isRunning = true;
+      animate();
+    }
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
+    if (!isRunning) {
+      isRunning = true;
+      animate(); // Wake to return home
+    }
   });
 })();
